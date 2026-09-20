@@ -1,24 +1,24 @@
-import Theorem11Spectral
-import Theorem11Arithmetic
+import MainTheoremSpectral
+import MainTheoremArithmetic
 import CheckGap
 import CheckProp24
 
 set_option autoImplicit false
 
-namespace TheoremOnePointOne
+namespace MainTheorem
 
 open scoped BigOperators InnerProductSpace
 
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
-/-! The fully formalized `λ₂ ≤ 0` branch of Theorem 1.1. -/
+/-! The fully formalized `λ₂ ≤ 0` branch of the main theorem. -/
 lemma nonpositive_second_eigenvalue_branch
     (G : SimpleGraph V) (d : ℕ) (lam : ℝ)
     (hd : 2 ≤ d)
     (hG : IsMainGraph G d)
     (hlam : IsSecondAdjacencyEigenvalue G (d : ℝ) lam)
     (hlam_nonpos : lam ≤ 0) :
-    Theorem11Claim G d lam := by
+    MainTheoremClaim G d lam := by
   classical
   rcases hG with ⟨hconn, hreg, hvt⟩
   letI : Nonempty V := hconn.nonempty
@@ -115,13 +115,13 @@ lemma nonpositive_second_eigenvalue_branch
     (by positivity) (by positivity) hmn hL' hU' hlog
     (log_constant_sq_le_C d) hden
 
-/-! The remaining positive-eigenvalue branch is the analytic core of the PDF. -/
-theorem theorem_one_one
+/-! The remaining positive-eigenvalue branch is the analytic core of the paper. -/
+theorem main_theorem
     (G : SimpleGraph V) (d : ℕ) (lam : ℝ)
     (hd : 2 ≤ d)
     (hG : IsMainGraph G d)
     (hlam : IsSecondAdjacencyEigenvalue G (d : ℝ) lam) :
-    Theorem11Claim G d lam := by
+    MainTheoremClaim G d lam := by
   by_cases hlam_nonpos : lam ≤ 0
   · exact nonpositive_second_eigenvalue_branch G d lam hd hG hlam hlam_nonpos
   · have hlam_pos : 0 < lam := lt_of_not_ge hlam_nonpos
@@ -175,4 +175,4 @@ theorem theorem_one_one
         exact positive_gap_arithmetic hd hn' hm4 hr hratio hgap'
           (by simpa [n] using htrade)
 
-end TheoremOnePointOne
+end MainTheorem

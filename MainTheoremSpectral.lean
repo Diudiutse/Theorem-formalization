@@ -1,8 +1,8 @@
-import Theorem11
+import MainTheorem
 
 set_option autoImplicit false
 
-namespace TheoremOnePointOne
+namespace MainTheorem
 
 open scoped BigOperators InnerProductSpace
 
@@ -440,4 +440,4 @@ lemma euclidean_trace_square_eigenvalues
   simp [inner_smul_right]
   ring
 
-end TheoremOnePointOne
+end MainTheorem

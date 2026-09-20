@@ -1,8 +1,8 @@
-import Theorem11Spectral
+import MainTheoremSpectral
 
 set_option autoImplicit false
 
-namespace TheoremOnePointOne
+namespace MainTheorem
 
 open scoped InnerProductSpace BigOperators
 
@@ -148,4 +148,4 @@ lemma projector_edge_energy
       rw [hfirst, hcross, hsecond]
     _ = 2 * ((d : ℝ) - lam) * α := by ring
 
-end TheoremOnePointOne
+end MainTheorem

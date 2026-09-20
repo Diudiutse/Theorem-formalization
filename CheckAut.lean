@@ -1,8 +1,8 @@
-import Theorem11
+import MainTheorem
 
 set_option autoImplicit false
 
-namespace TheoremOnePointOne
+namespace MainTheorem
 
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
@@ -81,4 +81,4 @@ lemma eval_surjective (G : SimpleGraph V) (h : IsVertexTransitive' G) (b : V) :
   obtain ⟨e, he⟩ := h b x
   exact ⟨e, he⟩
 
-end TheoremOnePointOne
+end MainTheorem

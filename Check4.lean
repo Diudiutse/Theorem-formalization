@@ -1,4 +1,4 @@
-import Theorem11Spectral
+import MainTheoremSpectral
 set_option pp.all true
 #check @SimpleGraph.lapMatrix
 #print SimpleGraph.lapMatrix

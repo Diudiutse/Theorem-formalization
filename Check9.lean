@@ -1,9 +1,9 @@
-import Theorem11Spectral
-import Theorem11Arithmetic
+import MainTheoremSpectral
+import MainTheoremArithmetic
 
 set_option autoImplicit false
 
-namespace TheoremOnePointOne
+namespace MainTheorem
 
 open scoped BigOperators InnerProductSpace
 
@@ -112,4 +112,4 @@ lemma check_nonpositive_branch
     (by positivity) (by positivity) hmn hL' hU' hlog
     (log_constant_sq_le_C d) hden
 
-end TheoremOnePointOne
+end MainTheorem

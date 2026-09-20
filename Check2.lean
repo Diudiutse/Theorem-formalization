@@ -1,4 +1,4 @@
-import Theorem11Spectral
+import MainTheoremSpectral
 #check Matrix.trace_toLin'_eq
 #check Matrix.trace_toLin_eq
 #check Matrix.toLin'_mul

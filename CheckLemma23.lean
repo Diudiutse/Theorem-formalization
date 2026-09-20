@@ -3,7 +3,7 @@ import CheckLemma21
 
 set_option autoImplicit false
 
-namespace TheoremOnePointOne
+namespace MainTheorem
 
 open scoped InnerProductSpace BigOperators Pointwise
 
@@ -924,4 +924,4 @@ lemma lemma_2_3
     supercritical_of_cutoff_data hlam_pos hTpos hT F u w hF huw hAu hquad hcard
   exact ⟨F', hF'ne, hF'super, by linarith⟩
 
-end TheoremOnePointOne
+end MainTheorem

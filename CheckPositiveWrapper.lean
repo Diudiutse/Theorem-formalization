@@ -1,9 +1,9 @@
-import Theorem11Spectral
-import Theorem11Arithmetic
+import MainTheoremSpectral
+import MainTheoremArithmetic
 
 set_option autoImplicit false
 
-namespace TheoremOnePointOne
+namespace MainTheorem
 
 open scoped BigOperators InnerProductSpace
 
@@ -50,7 +50,7 @@ lemma positive_second_eigenvalue_branch_of_inputs
       let γ : ℝ := d - lam
       1 / (32 * r ^ 2) < γ)
     (hlam_pos : 0 < lam) :
-    Theorem11Claim G d lam := by
+    MainTheoremClaim G d lam := by
   let n : ℝ := Fintype.card V
   let m : ℝ := adjacencyEigenvalueMultiplicity G lam
   let r : ℝ := n / m
@@ -76,4 +76,4 @@ lemma positive_second_eigenvalue_branch_of_inputs
     · simpa [n, m, r] using hgap
     · simpa [n, m, r] using htrade
 
-end TheoremOnePointOne
+end MainTheorem

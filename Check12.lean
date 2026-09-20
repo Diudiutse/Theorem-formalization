@@ -1,8 +1,8 @@
-import Theorem11Arithmetic
+import MainTheoremArithmetic
 
 set_option autoImplicit false
 
-namespace TheoremOnePointOne
+namespace MainTheorem
 
 lemma check_positive_gap_arithmetic
     {n m r γ : ℝ} {d : ℕ}
@@ -89,4 +89,4 @@ lemma check_positive_gap_arithmetic
     (le_of_lt hm0) (lt_of_lt_of_le zero_lt_one hr) hL hK hratio hLbound hC
     (by linarith)
 
-end TheoremOnePointOne
+end MainTheorem

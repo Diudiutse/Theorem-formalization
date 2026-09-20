@@ -1,4 +1,4 @@
-import Theorem11Spectral
+import MainTheoremSpectral
 open scoped InnerProductSpace
 #check LinearIsometryEquiv.piLpCongrLeft
 #check LinearIsometryEquiv.piLpCongrRight
@@ -13,7 +13,7 @@ open scoped InnerProductSpace
 #check Fintype.sum_equiv
 #check Equiv.piCongrLeft'
 
-namespace TheoremOnePointOne
+namespace MainTheorem
 variable {V : Type*} [Fintype V] [DecidableEq V]
 noncomputable def permIso (e : V ≃ V) :
     EuclideanSpace ℝ V ≃ₗᵢ[ℝ] EuclideanSpace ℝ V :=
@@ -34,4 +34,4 @@ lemma permIso_single (e : V ≃ V) (x : V) :
       simpa [hy]
     simp [h, hy]
 
-end TheoremOnePointOne
+end MainTheorem

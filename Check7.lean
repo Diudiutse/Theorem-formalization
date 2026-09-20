@@ -1,8 +1,8 @@
-import Theorem11Spectral
+import MainTheoremSpectral
 
 set_option autoImplicit false
 
-namespace TheoremOnePointOne
+namespace MainTheorem
 
 open scoped BigOperators InnerProductSpace
 
@@ -88,4 +88,4 @@ lemma check_eigenspace_finrank (G : SimpleGraph V) (μ : ℝ) :
       exact sub_eq_zero.mp h
   rw [hk]
 
-end TheoremOnePointOne
+end MainTheorem

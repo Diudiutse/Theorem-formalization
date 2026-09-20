@@ -1,10 +1,10 @@
 import CheckBall
-import Theorem11Arithmetic
-import Theorem11Arithmetic
+import MainTheoremArithmetic
+import MainTheoremArithmetic
 
 set_option autoImplicit false
 
-namespace TheoremOnePointOne
+namespace MainTheorem
 
 open scoped InnerProductSpace BigOperators
 
@@ -113,7 +113,7 @@ lemma coherence_gap_multiplicity_alternative
     apply (div_lt_iff₀ (by positivity : 0 < 32 * r ^ 2)).2
     nlinarith [hineq]
 
-/-! This is the PDF's Lemma 3.1, with the projector/coherence calculation
+/-! This is the paper's Lemma 3.1, with the projector/coherence calculation
     discharged by `coherence_gap_multiplicity_alternative`. -/
 lemma lemma_3_1
     (G : SimpleGraph V) (d : ℕ) (lam : ℝ)
@@ -127,4 +127,4 @@ lemma lemma_3_1
         (d : ℝ) - lam := by
   exact coherence_gap_multiplicity_alternative G d lam hd hconn hreg hvt hlam hlam_pos
 
-end TheoremOnePointOne
+end MainTheorem

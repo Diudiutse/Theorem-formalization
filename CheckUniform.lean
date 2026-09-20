@@ -1,8 +1,8 @@
-import Theorem11Spectral
+import MainTheoremSpectral
 
 set_option autoImplicit false
 
-namespace TheoremOnePointOne
+namespace MainTheorem
 
 open scoped InnerProductSpace BigOperators
 open ContinuousLinearMap
@@ -260,4 +260,4 @@ lemma spectral_projector_uniform_norm
     field_simp [hcardne]
     nlinarith [hsum]
 
-end TheoremOnePointOne
+end MainTheorem

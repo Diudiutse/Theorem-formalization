@@ -1,21 +1,21 @@
 import Mathlib
 
 /-!
-# A formal statement of Theorem 1.1
+# A formal statement of the main theorem
 
-This file formalizes the objects occurring in Theorem 1.1 of
-`vertex_transitive_log_squared_multiplicity.pdf`.
+This file formalizes the objects occurring in the main theorem of
+`paper.tex`.
 
 The graph is represented by `SimpleGraph`.  The adjacency operator is the
 linear operator induced by the adjacency matrix, and the multiplicity of an
 eigenvalue is the finite dimension of its eigenspace.  The analytic and
 spectral ingredients are proved in the companion files and assembled in
-`theorem_one_one`.
+`main_theorem`.
 -/
 
 set_option autoImplicit false
 
-namespace TheoremOnePointOne
+namespace MainTheorem
 
 open scoped BigOperators
 
@@ -26,7 +26,7 @@ def IsVertexTransitive (G : SimpleGraph V) : Prop :=
   ∀ u v : V, ∃ e : Equiv V V,
     (∀ x y : V, G.Adj (e x) (e y) ↔ G.Adj x y) ∧ e u = v
 
-/-- The graph hypotheses from the statement of Theorem 1.1.
+/-- The graph hypotheses from the statement of the main theorem.
 
 `SimpleGraph` already encodes finiteness-independent simplicity, undirectedness,
 and absence of loops; `Fintype V` supplies finiteness. -/
@@ -77,20 +77,20 @@ def IsSecondAdjacencyEigenvalue
     (∀ μ : ℝ, IsAdjacencyEigenvalue G μ → μ ≤ d) ∧
     ∀ μ : ℝ, IsAdjacencyEigenvalue G μ → μ < d → μ ≤ lam
 
-/-- The constant `K_d` from the PDF. -/
+/-- The constant `K_d` from the paper. -/
 noncomputable def K (d : ℕ) : ℝ :=
   8 * (d : ℝ) + 6 + 2 * Real.log (32 * (d : ℝ)) +
     Real.log (4 * ((d + 1 : ℕ) : ℝ))
 
-/-- The explicit constant `C_d` from the PDF. -/
+/-- The explicit constant `C_d` from the paper. -/
 noncomputable def C (d : ℕ) : ℝ :=
   max (4 * (K d) ^ 2)
     (max 8 ((1 + Real.log (2 * (d : ℝ))) ^ 2))
 
-/-- The exact inequality asserted by Theorem 1.1 for a graph and its `λ₂`. -/
-def Theorem11Claim (G : SimpleGraph V) (d : ℕ) (lam : ℝ) : Prop :=
+/-- The exact inequality asserted by the main theorem for a graph and its `λ₂`. -/
+def MainTheoremClaim (G : SimpleGraph V) (d : ℕ) (lam : ℝ) : Prop :=
   (adjacencyEigenvalueMultiplicity G lam : ℝ) ≤
     C d * (Fintype.card V : ℝ) /
       (1 + Real.log (Fintype.card V : ℝ)) ^ 2
 
-end TheoremOnePointOne
+end MainTheorem

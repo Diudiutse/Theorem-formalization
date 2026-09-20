@@ -1,8 +1,8 @@
-import Theorem11Spectral
+import MainTheoremSpectral
 
 set_option autoImplicit false
 
-namespace TheoremOnePointOne
+namespace MainTheorem
 
 open scoped BigOperators InnerProductSpace
 
@@ -279,4 +279,4 @@ lemma check_adjacency_eigenvalue_bounds
     simpa [Real.dist_eq] using hk
   exact abs_le.mp habs
 
-end TheoremOnePointOne
+end MainTheorem

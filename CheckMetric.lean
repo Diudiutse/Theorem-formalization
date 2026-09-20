@@ -1,4 +1,4 @@
-import Theorem11Spectral
+import MainTheoremSpectral
 #check SimpleGraph.dist
 #check SimpleGraph.edist
 #check SimpleGraph.dist_eq_length

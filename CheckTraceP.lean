@@ -1,6 +1,6 @@
-import Theorem11Spectral
+import MainTheoremSpectral
 open scoped InnerProductSpace
-namespace TheoremOnePointOne
+namespace MainTheorem
 open ContinuousLinearMap
 #check LinearMap.IsIdempotentElem.isProj_range
 #check LinearMap.IsProj.trace
@@ -22,4 +22,4 @@ example (U : Submodule ℝ (EuclideanSpace ℝ V)) :
       exact Submodule.starProjection_eq_self_iff.mpr hx
   rw [hrange] at hp
   exact hp.trace
-end TheoremOnePointOne
+end MainTheorem

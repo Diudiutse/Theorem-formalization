@@ -1,4 +1,4 @@
-import Theorem11Spectral
+import MainTheoremSpectral
 open scoped InnerProductSpace
 #check real_inner_self_eq_norm_sq
 #check real_inner_self_eq_norm_sq_to_K

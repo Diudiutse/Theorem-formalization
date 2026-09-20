@@ -1,4 +1,4 @@
-import Theorem11Spectral
+import MainTheoremSpectral
 #check Finset.sum_neg_distrib
 #check Finset.sum_erase_add
 #check Finset.sum_erase

@@ -1,8 +1,8 @@
-import Theorem11Spectral
+import MainTheoremSpectral
 
 set_option autoImplicit false
 
-namespace TheoremOnePointOne
+namespace MainTheorem
 
 variable {V E : Type*} [Fintype V] [DecidableEq V]
   [NormedAddCommGroup E]
@@ -31,4 +31,4 @@ lemma norm_sub_le_walk
     rw [SimpleGraph.Walk.length_cons, hlen]
     exact htri.trans (add_le_add ih hsrev)
 
-end TheoremOnePointOne
+end MainTheorem

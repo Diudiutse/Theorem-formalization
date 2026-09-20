@@ -1,4 +1,4 @@
-import Theorem11Arithmetic
+import MainTheoremArithmetic
 #check not_subsingleton_iff_nontrivial
 #check nontrivial_iff
 #check nontrivial_iff_exists_ne

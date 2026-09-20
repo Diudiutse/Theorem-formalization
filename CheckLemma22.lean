@@ -3,7 +3,7 @@ import CheckEdge
 
 set_option autoImplicit false
 
-namespace TheoremOnePointOne
+namespace MainTheorem
 
 open scoped InnerProductSpace BigOperators
 
@@ -481,4 +481,4 @@ lemma lemma_2_2
         γ * (r / (1 - a ^ 2)) = (γ * r) / (1 - a ^ 2) := by ring
         _ ≤ (d : ℝ) * r := (div_le_iff₀ hdenpos).2 (by simpa [mul_comm] using hmul)
 
-end TheoremOnePointOne
+end MainTheorem

@@ -1,8 +1,8 @@
-import Theorem11Spectral
+import MainTheoremSpectral
 
 set_option autoImplicit false
 
-namespace TheoremOnePointOne
+namespace MainTheorem
 
 open scoped InnerProductSpace BigOperators
 
@@ -111,4 +111,4 @@ lemma coherence_ball_bound
       rw [hScard]
     _ ≤ 4 * r := hcard
 
-end TheoremOnePointOne
+end MainTheorem

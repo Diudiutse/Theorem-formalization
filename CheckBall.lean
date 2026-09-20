@@ -2,7 +2,7 @@ import CheckCoherenceFull
 
 set_option autoImplicit false
 
-namespace TheoremOnePointOne
+namespace MainTheorem
 
 open scoped InnerProductSpace BigOperators
 
@@ -60,4 +60,4 @@ lemma ball_card_ge_of_path
   rw [hScard] at hcard
   simpa [Nat.cast_add, Nat.cast_one] using hcard
 
-end TheoremOnePointOne
+end MainTheorem

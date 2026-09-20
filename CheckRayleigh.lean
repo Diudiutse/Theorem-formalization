@@ -1,8 +1,8 @@
-import Theorem11Spectral
+import MainTheoremSpectral
 
 set_option autoImplicit false
 
-namespace TheoremOnePointOne
+namespace MainTheorem
 
 open scoped InnerProductSpace BigOperators
 
@@ -265,4 +265,4 @@ lemma rayleigh_le_on_second_eigenvalue
     hbound x
   rw [← hc, real_inner_smul_left, hxu, mul_zero]
 
-end TheoremOnePointOne
+end MainTheorem

@@ -1,13 +1,13 @@
-import Theorem11
+import MainTheorem
 
 set_option autoImplicit false
 
-namespace TheoremOnePointOne
+namespace MainTheorem
 
 /-!
 ## Verified arithmetic endgame
 
-The PDF's spectral lemmas reduce the last part of the proof to inequalities of
+The paper's spectral lemmas reduce the last part of the proof to inequalities of
 the following form.  The lemmas in this file are proved in Lean, independently
 of the still-unformalized graph-analytic input.
 -/
@@ -369,4 +369,4 @@ lemma nonpositive_spectrum_card_bound
   have hreal : (n : ℝ) ≤ 2 * d := by nlinarith
   exact_mod_cast hreal
 
-end TheoremOnePointOne
+end MainTheorem

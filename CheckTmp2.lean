@@ -1,6 +1,6 @@
-import Theorem11Spectral
+import MainTheoremSpectral
 set_option autoImplicit false
-namespace TheoremOnePointOne
+namespace MainTheorem
 open scoped BigOperators
 variable {V : Type*} [Fintype V] [DecidableEq V]
 #check @SimpleGraph.neighborFinset
@@ -26,4 +26,4 @@ lemma test_neighbor
       _ = @SimpleGraph.degree V G o (finiteNeighbor G o) := hsource.symm
       _ = d := hreg o
   rw [SimpleGraph.card_neighborFinset_eq_degree, hdeg]
-end TheoremOnePointOne
+end MainTheorem

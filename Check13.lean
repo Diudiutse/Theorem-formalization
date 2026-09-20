@@ -1,5 +1,5 @@
-import Theorem11Spectral
-import Theorem11Arithmetic
+import MainTheoremSpectral
+import MainTheoremArithmetic
 #check Module.finrank_pos
 #check Module.finrank_pos_iff
 #check Submodule.finrank_pos

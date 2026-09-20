@@ -4,7 +4,7 @@ import CheckLemma23
 
 set_option autoImplicit false
 
-namespace TheoremOnePointOne
+namespace MainTheorem
 
 open scoped BigOperators InnerProductSpace
 
@@ -158,4 +158,4 @@ lemma proposition_2_4
   convert hlogN using 1
   all_goals ring
 
-end TheoremOnePointOne
+end MainTheorem

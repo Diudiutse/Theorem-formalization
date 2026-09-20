@@ -4,7 +4,7 @@ import CheckCounting
 
 set_option autoImplicit false
 
-namespace TheoremOnePointOne
+namespace MainTheorem
 
 open scoped InnerProductSpace BigOperators Pointwise
 
@@ -213,4 +213,4 @@ lemma lemma_2_1
   apply lemma_2_1_of_rayleigh hreg hvt
     (rayleigh_le_on_second_eigenvalue hreg hconn hlam) F hsuper
 
-end TheoremOnePointOne
+end MainTheorem

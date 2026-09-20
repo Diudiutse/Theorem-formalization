@@ -3,7 +3,7 @@ import CheckEdge
 
 set_option autoImplicit false
 
-namespace TheoremOnePointOne
+namespace MainTheorem
 
 open scoped InnerProductSpace BigOperators
 
@@ -208,4 +208,4 @@ lemma projector_coherence_data
     simpa [hxy] using hle.trans_eq henergy
   exact ⟨α, Φ, hα, hαr, hnorm, hframe, hedge⟩
 
-end TheoremOnePointOne
+end MainTheorem

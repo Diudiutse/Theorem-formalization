@@ -1,4 +1,4 @@
-import Theorem11Spectral
+import MainTheoremSpectral
 #check SimpleGraph.Preconnected.subsingleton_connectedComponent
 #check Fintype.card_eq_one_iff
 #check Fintype.card_unique

@@ -1,6 +1,6 @@
-import Theorem11Spectral
+import MainTheoremSpectral
 set_option autoImplicit false
-namespace TheoremOnePointOne
+namespace MainTheorem
 open scoped InnerProductSpace BigOperators
 variable {V : Type*} [Fintype V] [DecidableEq V]
 structure GraphAut (G : SimpleGraph V) where
@@ -48,4 +48,4 @@ lemma adjacency_perm_commute (G : SimpleGraph V) (e : GraphAut G) (v : Euclidean
     simp
   · rw [if_neg h, if_neg (fun h' => h (hadj.mp h'))]
     simp
-end TheoremOnePointOne
+end MainTheorem

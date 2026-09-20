@@ -1,3 +1,0 @@
-import Theorem11Proof
-
-#print axioms TheoremOnePointOne.theorem_one_one

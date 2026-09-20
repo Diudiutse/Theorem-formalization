@@ -1,4 +1,4 @@
-import Theorem11Spectral
+import MainTheoremSpectral
 #check Set.ncard_eq_toFinset_card'
 #check Set.ncard_eq_toFinset_card
 #check Set.toFinite

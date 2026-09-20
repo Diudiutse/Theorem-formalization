@@ -4,7 +4,7 @@ set_option autoImplicit false
 
 noncomputable section
 
-namespace TheoremOnePointOne
+namespace MainTheorem
 
 open scoped BigOperators Pointwise
 
@@ -198,7 +198,7 @@ lemma graphAutBad_card_mul_card
       exact hpair p hp
     _ = P.card * ((d + 1) * Fintype.card (GraphAut G)) := by simp
     _ = (d + 1) * (F.card * F.card) * Fintype.card (GraphAut G) := by
-      simp [P, Nat.mul_assoc, Nat.mul_comm]
+      simp [P, Nat.mul_assoc, Nat.mul_comm, Nat.mul_left_comm]
 
 lemma exists_good_graphAut
     {G : SimpleGraph V} {d : ℕ}
@@ -243,6 +243,6 @@ lemma exists_good_graphAut
     simpa [graphAutPairBad] using hrel
   exact ⟨fun h => hrel (Or.inl h), fun h => hrel (Or.inr h)⟩
 
-end TheoremOnePointOne
+end MainTheorem
 
 end

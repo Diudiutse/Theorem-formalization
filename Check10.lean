@@ -1,4 +1,4 @@
-import Theorem11Spectral
+import MainTheoremSpectral
 #check SimpleGraph.Iso
 #check SimpleGraph.Iso.trans
 #check SimpleGraph.Iso.symm

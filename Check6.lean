@@ -1,4 +1,4 @@
-import Theorem11Spectral
+import MainTheoremSpectral
 #check WithLp.linearEquiv
 #check WithLp.linearEquiv_apply
 #check WithLp.linearEquiv_symm_apply

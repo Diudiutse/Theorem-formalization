@@ -1,6 +1,6 @@
-import Theorem11Spectral
+import MainTheoremSpectral
 set_option autoImplicit false
-namespace TheoremOnePointOne
+namespace MainTheorem
 variable {V : Type*} [Fintype V] [DecidableEq V]
 lemma card_ge_three
     (G : SimpleGraph V) (d : ℕ) (hd : 2 ≤ d)
@@ -15,4 +15,4 @@ lemma card_ge_three
   rw [hdeg] at hlt
   have hn : 3 ≤ Fintype.card V := by omega
   exact_mod_cast hn
-end TheoremOnePointOne
+end MainTheorem
