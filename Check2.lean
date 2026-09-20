@@ -1,0 +1,14 @@
+import Theorem11Spectral
+#check Matrix.trace_toLin'_eq
+#check Matrix.trace_toLin_eq
+#check Matrix.toLin'_mul
+#check Matrix.toEuclideanLin_toLp
+#check Matrix.toEuclideanLin_eq_toLin_orthonormal
+#check LinearMap.trace_toMatrix
+#check LinearMap.trace_eq_matrix_trace
+#check LinearMap.trace_toLinAlgEquiv
+#check Matrix.toEuclideanLin.injective
+#check PiLp.basisFun
+#check Pi.basisFun
+#check Matrix.toLin'_toMatrix'
+#check Matrix.toLin'_apply

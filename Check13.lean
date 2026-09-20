@@ -1,0 +1,12 @@
+import Theorem11Spectral
+import Theorem11Arithmetic
+#check Module.finrank_pos
+#check Module.finrank_pos_iff
+#check Submodule.finrank_pos
+#check Submodule.finrank_pos_iff
+#check Module.finrank_pos_iff
+#check Submodule.ne_bot_iff
+#check Submodule.mem_ker
+#check LinearMap.mem_ker
+#check div_mul_cancel₀
+#check div_mul_cancel₀

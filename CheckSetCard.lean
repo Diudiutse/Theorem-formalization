@@ -1,0 +1,11 @@
+import Theorem11Spectral
+#check Set.ncard_eq_toFinset_card'
+#check Set.ncard_eq_toFinset_card
+#check Set.toFinite
+#check Set.Finite.toFinset
+#check Set.Finite.ncard_eq_toFinset_card
+#check Set.ncard_coe_finset
+#check Finset.sum_le_sum_of_subset_of_nonneg
+#check Finset.sum_le_sum_of_subset_of_nonneg
+#check Finset.sum_le_sum_of_subset_of_nonneg
+#check Finset.sum_le_sum_of_subset_of_nonneg

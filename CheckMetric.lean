@@ -1,0 +1,10 @@
+import Theorem11Spectral
+#check SimpleGraph.dist
+#check SimpleGraph.edist
+#check SimpleGraph.dist_eq_length
+#check SimpleGraph.mem_ball
+#check SimpleGraph.mem_ball_top
+#check SimpleGraph.Connected.exists_walk_length_eq_dist
+#check SimpleGraph.Walk.length
+#check Set.ncard_le
+#check Set.ncard_le_ncard

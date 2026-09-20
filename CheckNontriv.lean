@@ -1,0 +1,10 @@
+import Theorem11Arithmetic
+#check not_subsingleton_iff_nontrivial
+#check nontrivial_iff
+#check nontrivial_iff_exists_ne
+#check Module.finrank_pos_iff
+#check Submodule.nontrivial_iff
+#check LinearMap.ker_eq_bot
+#check LinearMap.mem_ker
+#check LinearMap.sub_apply
+#check LinearMap.smul_apply

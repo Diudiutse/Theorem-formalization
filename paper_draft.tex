@@ -1,0 +1,633 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[english]{babel}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,mathtools}
+\usepackage[shortlabels]{enumitem}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\geometry{tmargin=2.1cm,bmargin=2.1cm,lmargin=2.35cm,rmargin=2.35cm}
+\setlength{\emergencystretch}{2em}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{problem}[theorem]{Problem}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\DeclareMathOperator{\Tr}{Tr}
+\usepackage{yhmath}
+\usepackage{amsmath}
+\usepackage{changepage}
+\usepackage{mdframed} % 提供框线环境
+\allowdisplaybreaks
+
+\newenvironment{claimproof}{%
+  \begin{mdframed}[
+    leftmargin=0pt,          % 不缩进
+    linecolor=black,
+    linewidth=0.8pt,
+    skipabove=6pt,
+    skipbelow=6pt,
+    rightline=false,
+    topline=false,
+    bottomline=false,
+    innerleftmargin=6pt,     % 竖线与文字之间的间距
+    innerrightmargin=0pt,
+    innertopmargin=0pt,
+    innerbottommargin=0pt
+  ]
+  \textbf{Proof of the claim.}\ignorespaces
+}{%
+  \par\nobreak\noindent\hfill$\blacksquare$%
+  \end{mdframed}
+}
+\usepackage{extarrows}
+\title{Second-Eigenvalue Multiplicity in Vertex-Transitive Graphs}
+\author{Dongxiu Cai\textsuperscript{1}\thanks{Email: \href{mailto:diudiutse@sjtu.edu.cn}{diudiutse@sjtu.edu.cn}},\quad Jiasheng Zeng\textsuperscript{2}\thanks{Email: \href{mailto:jasonzeng@mail.ustc.edu.cn}{jasonzeng@mail.ustc.edu.cn}},\quad and Xiao-Dong Zhang\textsuperscript{1}\thanks{Email: \href{mailto:xiaodong@sjtu.edu.cn}{xiaodong@sjtu.edu.cn}}\\[0.7em]
+{\small \textsuperscript{1}School of Mathematical Sciences, Shanghai Jiao Tong University, Shanghai 200240, China}\\
+{\small \textsuperscript{2}Department of Mathematics, Hong Kong University of Science and Technology,}\\[-0.1em]
+{\small Clear Water Bay, Kowloon, Hong Kong}}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Jiang, Tidor, Yao, Zhang, and Zhao~\cite[Question~6.3]{JiangTidorYaoZhangZhao2021FixedAngle} asked for the maximum possible multiplicity of the second adjacency eigenvalue of a connected bounded-degree graph and raised the corresponding question for Cayley graphs. We prove the conjectured $O_d(n/\log n)$ bound for the class of vertex-transitive graphs. In fact, if $X$ is a finite, connected, simple, $d$-regular vertex-transitive graph on $n$ vertices and $m(X)$ denotes the multiplicity of its second adjacency eigenvalue, then
+\[
+m(X)\leq C_d\frac{n}{(1+\log n)^2}.
+\]
+Here $C_d$ depends only on $d$. In particular, the same estimate holds for every connected $d$-regular Cayley graph. Within the vertex-transitive class, this improves the previously available bound $O_d\bigl(n/(\log n)^{1/5-o(1)}\bigr)$ for general fixed-degree regular graphs.
+\end{abstract}
+
+\section{Introduction}\label{sec:introduction}
+
+Let $X$ be a finite, connected, simple graph on $n\geq2$ vertices, let $A_X$ be its adjacency matrix, and write its eigenvalues as $\lambda_1(X)>\lambda_2(X)\geq\cdots\geq\lambda_n(X)$, with repeated eigenvalues listed according to their multiplicities. We denote the multiplicity of $\lambda_2(X)$ by $m(X)$. If $X$ is $d$-regular, then $\lambda_1(X)=d$, and a graph is vertex-transitive if its automorphism group acts transitively on its vertex set. Throughout the paper, $\log$ denotes the natural logarithm. Brouwer and Haemers~\cite{BrouwerHaemers2012Spectra} provide a standard reference for the terminology and basic facts concerning graph spectra.
+
+The problem of bounding $m(X)$ arose naturally from the study of equiangular lines. Lemmens and Seidel~\cite{LemmensSeidel1973Equiangular} introduced the classical spectral encoding of equiangular systems, and Neumaier~\cite{Neumaier1989GraphRepresentations} developed the connection further for graph representations and spherical two-distance sets. Subsequent bounds for equiangular lines and related spherical codes were obtained by Bukh~\cite{Bukh2016Equiangular}, Balla, Dr\"axler, Keevash, and Sudakov~\cite{BallaDraxlerKeevashSudakov2018Equiangular}, and Jiang and Polyanskii~\cite{JiangPolyanskii2020Forbidden}. In their resolution of the fixed-angle problem, Jiang, Tidor, Yao, Zhang, and Zhao~\cite[Theorem~2.2]{JiangTidorYaoZhangZhao2021FixedAngle} proved that, for every fixed maximum degree $\Delta$ and every fixed index $j$, the multiplicity of the $j$th largest adjacency eigenvalue of a connected $n$-vertex graph is $O_{\Delta,j}(n/\log\log n)$. They then isolated the following graph-theoretic problem.
+
+\begin{problem}[Jiang--Tidor--Yao--Zhang--Zhao~\cite{JiangTidorYaoZhangZhao2021FixedAngle}, Question~6.3]\label{prob:jtyzz}
+Fix a positive integer $\Delta$. What is the maximum possible second eigenvalue multiplicity of a connected $n$-vertex graph with maximum degree at most $\Delta$?
+\end{problem}
+
+Jiang, Tidor, Yao, Zhang, and Zhao~\cite[remark following Question~6.3]{JiangTidorYaoZhangZhao2021FixedAngle} also raised the corresponding question for Cayley graphs. Haiman, Schildkraut, Zhang, and Zhao~\cite[Question~1.2]{HaimanSchildkrautZhangZhao2022HighMultiplicity} subsequently formulated the problem for bounded-degree graphs, regular graphs, and Cayley graphs. Since Cayley graphs are vertex-transitive, while a vertex-transitive graph need not be a Cayley graph, it is natural to study the full vertex-transitive class. We prove a uniform bound for this class.
+
+Several results provide the broader quantitative context. For a graph with degree matrix $D_X$, McKenzie, Rasmussen, and Srivastava~\cite{McKenzieRasmussenSrivastava2021ClosedWalks} bounded the multiplicity of the second eigenvalue of the normalized adjacency matrix $D_X^{-1/2}A_XD_X^{-1/2}$ by $O(n\Delta^{7/5}/(\log n)^{1/5-o(1)})$ when the maximum degree is at most $\Delta$; for fixed-degree regular graphs this becomes $O_d(n/(\log n)^{1/5-o(1)})$. For a $d$-regular graph, let $P_X=(I+A_X/d)/2$ be the transition matrix of the lazy random walk. Under the small-gap hypothesis $1-\lambda_2(P_X)=O((\log n)^{-4})$, Sauerwald, Sun, and Vagnozzi~\cite[Theorem~1.4]{SauerwaldSunVagnozzi2023Support} bounded by $O(n/\log n)$ the number of eigenvalues of $P_X$ in a one-sided interval ending at $\lambda_2(P_X)$. Balla and Buci\'c~\cite{BallaBucic2024ImprovedMultiplicity} established further bounds that depend on the order, the maximum degree, the numerical value of the second eigenvalue, and local growth, with applications to equiangular lines. For $U\subseteq V(X)$, let $\partial_VU$ consist of the vertices outside $U$ having a neighbor in $U$, and set $h_V(X)=\min_{0<|U|\leq n/2}|\partial_VU|/|U|$. In the complementary regime $h_V(X)\geq c>0$, Haiman, Schildkraut, Zhang, and Zhao~\cite[Remark~1.3(a)]{HaimanSchildkrautZhangZhao2022HighMultiplicity} observed that the multiplicity is $O_{\Delta,c}(n/\log n)$ when the maximum degree is at most $\Delta$. The small-gap regime is unavoidable even within the Abelian Cayley class: Friedman, Murty, and Tillich~\cite{FriedmanMurtyTillich2006Abelian} proved that, for fixed $d$, every $d$-regular Cayley graph on an Abelian group of order $n$ satisfies $d-\lambda_2(X)=O(dn^{-4/d})$. Accordingly, a bound uniform over all vertex-transitive graphs must also treat spectral gaps that tend to zero.
+
+The available constructions show that substantial multiplicity persists even under strong degree restrictions. Haiman, Schildkraut, Zhang, and Zhao~\cite[Theorems~1.4 and~1.5]{HaimanSchildkrautZhangZhao2022HighMultiplicity} constructed infinitely many connected graphs of maximum degree $4$ whose second eigenvalue has multiplicity at least $c\sqrt{n/\log n}$ for an absolute constant $c>0$, as well as infinitely many connected $18$-regular Cayley graphs with $m(X)\geq n^{2/5}-1$. For infinitely many fixed positive real numbers $\lambda$, Schildkraut~\cite[Theorem~1.5]{Schildkraut2023FixedSecondEigenvalue} constructed connected bounded-degree regular graphs whose second eigenvalue is exactly $\lambda$ and has multiplicity $\Omega(\log\log n)$. These results leave a wide interval between the known lower bounds and the best general upper bounds.
+
+Symmetry also imposes structure on eigenspaces. Lov\'asz~\cite{Lovasz1975TransitiveSpectra} described the spectra of graphs with transitive automorphism groups in representation-theoretic terms, and Babai~\cite{Babai1979CayleySpectra} developed the corresponding theory for Cayley graphs. Sah, Sawhney, and Zhao~\cite[Theorem~1.4]{SahSawhneyZhao2022Eigenbasis} proved that every $n$-vertex vertex-transitive graph admits an orthonormal eigenbasis whose coordinates have absolute value $O(\sqrt{\log n/n})$. From the complementary perspective of small multiplicity, Guo and Mohar~\cite{GuoMohar2024SimpleEigenvalues} studied the occurrence of nontrivial simple eigenvalues in cubic vertex-transitive graphs and analyzed this phenomenon in several natural families.
+
+Further quantitative bounds arise when the graph has controlled metric growth or the underlying group is Abelian. For a finite $d$-regular Cayley graph, let $B(s)$ be the radius-$s$ ball in the word metric and let $K=\max_{s\geq1}|B(2s)|/|B(s)|$ be its global doubling constant. Lee and Makarychev~\cite[Theorem~3.1]{LeeMakarychev2009MultiplicityGrowth} proved that the multiplicity of the $j$th eigenvalue of $dI-A_X$ is at most $\exp(O((\log K)(\log K+\log j)))$. In the Abelian case, D'Orsi, Jones, Ruotolo, Vadhan, and Zhang~\cite{DOrsiJonesRuotoloVadhanZhang2025AbelianCayley} proved the degree-only bound $2^{O(d)}$ for the multiplicity of the first positive eigenvalue of $I-A_X/d$, equivalently the second adjacency eigenvalue, and constructed examples with multiplicity $2^{\Omega(d)}$. Our result uses vertex transitivity without imposing a group-theoretic condition on a transitive automorphism group.
+
+\begin{theorem}\label{thm:main}
+For every integer $d\geq2$, there is a constant $C_d<\infty$ such that every finite, connected, simple, $d$-regular vertex-transitive graph $X$ on $n$ vertices satisfies
+\[
+m(X)\leq C_d\frac{n}{(1+\log n)^2}.
+\]
+More explicitly, one may take
+\[
+K_d=8d+6+2\log(32d)+\log(4(d+1))
+\qquad\text{and}\qquad
+C_d=\max\{4K_d^2,8,(1+\log(2d))^2\}.
+\]
+\end{theorem}
+
+If $\Gamma$ is a finite group and $S=S^{-1}\subseteq\Gamma\setminus\{1\}$ is a generating set, the Cayley graph $\operatorname{Cay}(\Gamma,S)$ has vertex set $\Gamma$ and joins $g$ to $gs$ for every $g\in\Gamma$ and $s\in S$. Left multiplication acts transitively on this graph, so Theorem~\ref{thm:main} immediately gives the following consequence.
+
+\begin{corollary}\label{cor:cayley}
+For every integer $d\geq2$, every finite Cayley graph $X=\operatorname{Cay}(\Gamma,S)$ defined by an inverse-closed generating set $S\subseteq\Gamma\setminus\{1\}$ with $|S|=d$ satisfies
+\[
+m(X)\leq C_d\frac{|\Gamma|}{(1+\log|\Gamma|)^2}.
+\]
+\end{corollary}
+
+Theorem~\ref{thm:main} establishes a squared-logarithmic upper bound for the vertex-transitive version of Problem~\ref{prob:jtyzz}. For fixed degree, it improves the logarithmic exponent $1/5-o(1)$ available for general regular graphs to the exponent $2$. At the same time, the Cayley-graph construction of Haiman, Schildkraut, Zhang, and Zhao shows that determining the optimal order within the vertex-transitive class remains a separate problem.
+
+We now describe the argument. Write $\lambda=\lambda_2(X)$, $\gamma=d-\lambda$, $m=m(X)$, and $r=n/m$. The first step is a localization principle. If $F\subseteq V(X)$ is nonempty and the spectral radius $\rho(X[F])$ of the subgraph induced by $F$ exceeds $\lambda$, then interlacing and a count over the translates of $F$ under a transitive automorphism group give
+\[
+\rho(X[F])>\lambda
+\qquad\Longrightarrow\qquad
+n\leq(d+1)|F|^2.
+\]
+This step is closely related to the induced-subgraph obstruction of Balla and Buci\'c~\cite[Lemmas~2.2 and~2.3]{BallaBucic2024ImprovedMultiplicity}. Vertex transitivity permits averaging over the translates of $F$, which gives the displayed estimate for $n$.
+
+Let $P$ be the orthogonal projector onto the $\lambda$-eigenspace and put $C=rP$. Since every automorphism of $X$ commutes with $P$, transitivity gives $C(x,x)=1$ for every vertex $x$, while $C^2=rC$ and $A_XC=\lambda C$. The use of this projector to control metric-ball growth follows the spectral-embedding viewpoint of Lyons and Oveis Gharan~\cite[Section~6]{LyonsOveisGharan2018SpectralEmbedding}, while the constant-diagonal projector identity also appears explicitly in Burq and Letrouit~\cite[Equation~(3.2)]{BurqLetrouit2026Delocalized}. In the present setting, two adjacent columns of $C$ yield adjacent vertices $o,w$ and a real $\lambda$-eigenfunction $\phi$ satisfying $\phi(o)=1$, $\phi(w)\leq0$, $\|\phi\|_2^2\leq dr/\gamma$, and $\mathcal E(\phi)\leq dr$, where $\mathcal E(\phi)=\sum_{\{x,y\}\in E(X)}(\phi(x)-\phi(y))^2$.
+
+A logarithmic cutoff of the positive part $\phi_+(x)=\max\{\phi(x),0\}$ then produces a small set $F$ for which $\rho(X[F])>\lambda$. The calculation uses a finite ground-state identity in the spirit of the ground-state representations of Haeseler and Keller~\cite[Proposition~3.2]{HaeselerKeller2011Generalized} and Keller, Pinchover, and Pogorzelski~\cite[Proposition~4.8]{KellerPinchoverPogorzelski2020Criticality}; the form needed here is proved directly in Section~\ref{sec:logarithmic-localization}. The cutoff estimate follows from $ab(\log a-\log b)^2\leq(a-b)^2$ for $a,b>0$. Combining the resulting set $F$ with the translate count gives, when $\lambda>0$,
+\[
+\log n\leq\log(4(d+1))+2\log\frac{dr}{\gamma}+8d\sqrt r.
+\]
+
+It remains to prevent the gap $\gamma$ from being too small relative to $r$. The identities for $C$ imply that $|B_X(o,s)|\leq4r$ whenever $\gamma s^2\leq1/2$, where $B_X(o,s)$ is the set of vertices at distance at most $s$ from $o$. Taking $s=\lfloor(2\gamma)^{-1/2}\rfloor$ shows that either $m\leq4$ or $\gamma>1/(32r^2)$. Substitution into the preceding inequality yields $\log n\leq K_d\sqrt r$, and hence $m=n/r\leq K_d^2n/(\log n)^2$ in the remaining range. The cases $\lambda\leq0$, $m\leq4$, and the bounded values of $n$ are handled separately, giving the stated constant $C_d$.
+
+Section~\ref{sec:logarithmic-localization} proves the induced-subgraph estimate and the logarithmic cutoff. Section~\ref{sec:projector-main-proof} establishes the spectral-projector estimates and completes the proof of Theorem~\ref{thm:main}. Section~\ref{sec:concluding-remarks} discusses the remaining extremal questions and possible extensions of the argument.
+
+\section{Logarithmic Localization}\label{sec:logarithmic-localization}
+
+Throughout this section, $X$ is a finite, connected, simple, $d$-regular graph on $n$ vertices, with adjacency matrix $A=A_X$. We regard a real-valued function on $V(X)$ as a column vector and use the Euclidean norm $\|f\|_2^2=\sum_{x\in V(X)}f(x)^2$. Its Dirichlet energy is
+\[
+\mathcal E(f)=f^{\mathsf T}(dI-A)f=\sum_{\{x,y\}\in E(X)}(f(x)-f(y))^2.
+\]
+For a function $f$ on $V(X)$, write $\operatorname{supp}f=\{x\in V(X):f(x)\neq0\}$. For $F\subseteq V(X)$, let $X[F]$ be the subgraph induced by $F$, let $A_F$ be its adjacency matrix, and let $\rho(X[F])$ be the largest eigenvalue of $A_F$. Since $A_F$ is a symmetric nonnegative matrix, this eigenvalue is also its spectral radius.
+
+The first ingredient converts an induced subgraph whose largest eigenvalue exceeds $\lambda_2(X)$ into a bound for the order of $X$. Balla and Buci\'c~\cite[Lemmas~2.2 and~2.3]{BallaBucic2024ImprovedMultiplicity} use the same induced-subgraph obstruction to bound second-eigenvalue multiplicity in graphs of bounded maximum degree. The form below uses vertex transitivity to count all translates of one vertex set.
+
+\begin{lemma}\label{lem:induced-subgraph-count}
+Suppose that $X$ is vertex-transitive, and let $F\subseteq V(X)$ be nonempty. If
+\[
+\rho(X[F])>\lambda_2(X),
+\]
+then
+\[
+n\leq(d+1)|F|^2.
+\]
+\end{lemma}
+
+\begin{proof}
+Fix a subgroup $\Gamma\leq\operatorname{Aut}(X)$ that acts transitively on $V(X)$. We first show that, for every $g\in\Gamma$, either $F\cap gF\neq\varnothing$ or an edge of $X$ has one endpoint in $F$ and the other in $gF$. Suppose otherwise. The sets $F$ and $gF$ are then disjoint, and the principal submatrix of $A$ indexed by $F\cup gF$ is the block diagonal matrix
+\[
+\begin{pmatrix}
+A_F&0\\
+0&A_{gF}
+\end{pmatrix}.
+\]
+The automorphism $g$ gives an isomorphism from $X[F]$ to $X[gF]$, so $A_F$ and $A_{gF}$ have the same largest eigenvalue. Consequently, the block diagonal matrix has at least two eigenvalues equal to $\rho(X[F])$, and its second largest eigenvalue is at least $\rho(X[F])>\lambda_2(X)$. This contradicts the Cauchy interlacing theorem for a principal submatrix of $A$. Thus the asserted alternative holds for every $g\in\Gamma$.
+
+Fix $g\in\Gamma$. By the alternative just proved, there are vertices $a,b\in F$ such that $gb$ belongs to the closed neighborhood $\{a\}\cup N_X(a)$, where $N_X(a)=\{x\in V(X):x\sim a\}$. For $a,b\in F$, define
+\[
+\Gamma_{a,b}=\{g\in\Gamma:gb\in\{a\}\cup N_X(a)\}.
+\]
+It follows that $\Gamma=\bigcup_{(a,b)\in F\times F}\Gamma_{a,b}$.
+
+Fix vertices $b,y\in V(X)$. Transitivity provides an element $g_0\in\Gamma$ with $g_0b=y$, and the set of all elements taking $b$ to $y$ is the left coset $g_0\Gamma_b$ of the stabilizer $\Gamma_b=\{g\in\Gamma:gb=b\}$. The orbit--stabilizer theorem gives $n=|\Gamma b|=[\Gamma:\Gamma_b]$, so this set has cardinality $|\Gamma_b|=|\Gamma|/n$. The graph is simple and $d$-regular, so $|\{a\}\cup N_X(a)|=d+1$. Hence $|\Gamma_{a,b}|=(d+1)|\Gamma|/n$ for every ordered pair $(a,b)\in F\times F$. Taking cardinalities and using the union bound gives
+\[
+|\Gamma|\leq\sum_{(a,b)\in F\times F}|\Gamma_{a,b}|=|F|^2\frac{(d+1)|\Gamma|}{n}.
+\]
+Cancelling $|\Gamma|$ and multiplying by $n$ proves the result.
+\end{proof}
+
+Lemma~\ref{lem:induced-subgraph-count} reduces the required estimate to the construction of a small set $F$ with $\rho(X[F])>\lambda_2(X)$. We begin that construction with an eigenfunction that changes sign across an edge. Passing to its positive part produces a nonnegative function with a zero at one endpoint of the edge, while preserving the inequality needed from the eigenvalue equation.
+
+\begin{lemma}\label{lem:positive-part}
+Let $\phi\in\mathbb R^{V(X)}$ satisfy $A\phi=\lambda\phi$, and define $p\in\mathbb R^{V(X)}$ by $p(x)=\max\{\phi(x),0\}$. Then
+\[
+Ap\geq\lambda p
+\]
+coordinatewise, and $\mathcal E(p)\leq\mathcal E(\phi)$. In particular, if adjacent vertices $o,w$ satisfy $\phi(o)=1$ and $\phi(w)\leq0$, then $p(o)=1$ and $p(w)=0$.
+\end{lemma}
+
+\begin{proof}
+Fix $x\in V(X)$. If $\phi(x)>0$, then $p(x)=\phi(x)$ and $p(y)\geq\phi(y)$ for every neighbor $y$ of $x$. Therefore
+\[
+(Ap)(x)=\sum_{y\sim x}p(y)\geq\sum_{y\sim x}\phi(y)=(A\phi)(x)=\lambda\phi(x)=\lambda p(x).
+\]
+If $\phi(x)\leq0$, then $p(x)=0$ and $(Ap)(x)\geq0=\lambda p(x)$. This proves the coordinatewise inequality.
+
+The map $t\mapsto\max\{t,0\}$ does not increase distances on $\mathbb R$. Hence $|p(x)-p(y)|\leq|\phi(x)-\phi(y)|$ for every edge $\{x,y\}$. Squaring and summing over the edges gives $\mathcal E(p)\leq\mathcal E(\phi)$. The final assertion follows immediately from the definition of $p$.
+\end{proof}
+
+The positive part need not have small support, so it must be truncated. A cutoff by graph distance would introduce an error governed by the size of a boundary. Instead, we cut according to the logarithm of the value of $p$. The following scalar estimate is the reason that the resulting error is controlled directly by the Dirichlet energy.
+
+\begin{lemma}\label{lem:scalar-log-cutoff}
+For $T>0$, define $\chi_T:[0,\infty)\to[0,1]$ by $\chi_T(0)=0$ and
+\[
+\chi_T(a)=\min\left\{1,\max\left\{0,1+\frac{\log a}{T}\right\}\right\}
+\qquad(a>0).
+\]
+Then $\chi_T(1)=1$, and $\chi_T(a)>0$ implies $a>e^{-T}$. Moreover, for all $a,b\geq0$,
+\[
+ab\bigl(\chi_T(a)-\chi_T(b)\bigr)^2\leq\frac{(a-b)^2}{T^2}.
+\]
+\end{lemma}
+
+\begin{proof}
+The first two assertions follow directly from the definition. Suppose first that $a,b>0$. The map $q(t)=\min\{1,\max\{0,t\}\}$ is the nearest-point projection from $\mathbb R$ onto $[0,1]$, and therefore $|q(s)-q(t)|\leq|s-t|$ for all real $s,t$. It follows that
+\[
+|\chi_T(a)-\chi_T(b)|\leq\frac{|\log a-\log b|}{T}.
+\]
+We next verify the elementary inequality
+\[
+ab(\log a-\log b)^2\leq(a-b)^2.
+\]
+Put $t=\log(a/b)$. Then $(a-b)^2=ab(e^{t/2}-e^{-t/2})^2$. For $s\geq0$, the function $e^{s/2}-e^{-s/2}-s$ vanishes at $s=0$ and has derivative $(e^{s/2}+e^{-s/2})/2-1\geq0$. Thus $|t|\leq|e^{t/2}-e^{-t/2}|$, which proves the displayed inequality. Combining the last two estimates proves the result when $a,b>0$. If $a=0$ or $b=0$, the left-hand side of the claimed inequality is zero, so the conclusion remains valid.
+\end{proof}
+
+To apply Lemma~\ref{lem:scalar-log-cutoff} to an adjacency quadratic form, we use an exact finite-dimensional identity. It is the form required here of the ground-state representations appearing in Haeseler and Keller~\cite[Proposition~3.2]{HaeselerKeller2011Generalized} and Keller, Pinchover, and Pogorzelski~\cite[Proposition~4.8]{KellerPinchoverPogorzelski2020Criticality}. The formula below is written without quotients of coordinates and therefore remains valid when $p$ vanishes.
+
+\begin{lemma}\label{lem:finite-ground-state}
+Let $p,\eta\in\mathbb R^{V(X)}$, put $u(x)=p(x)\eta(x)$ for every $x\in V(X)$, and let $\lambda\in\mathbb R$. Then
+\[
+u^{\mathsf T}(A-\lambda I)u
+=\sum_{x\in V(X)}\eta(x)^2p(x)\bigl((A-\lambda I)p\bigr)(x)
+-\sum_{\{x,y\}\in E(X)}p(x)p(y)\bigl(\eta(x)-\eta(y)\bigr)^2.
+\]
+\end{lemma}
+
+\begin{proof}
+Because every unoriented edge contributes once from each of its endpoints,
+\[
+\sum_{x\in V(X)}\eta(x)^2p(x)(Ap)(x)=\sum_{\{x,y\}\in E(X)}p(x)p(y)\bigl(\eta(x)^2+\eta(y)^2\bigr).
+\]
+Subtracting the edge sum in the statement from the right-hand side of this identity leaves
+\[
+2\sum_{\{x,y\}\in E(X)}p(x)p(y)\eta(x)\eta(y)=u^{\mathsf T}Au.
+\]
+The remaining diagonal term on the right-hand side of the asserted formula is $-\lambda\sum_xp(x)^2\eta(x)^2=-\lambda u^{\mathsf T}u$. Combining the adjacency and diagonal terms proves the identity.
+\end{proof}
+
+The preceding three lemmas now fit together. The logarithmic cutoff produces a vector whose quadratic form may fall slightly below $\lambda$, and the zero at $w$ permits an explicit correction supported at that single vertex. The strict inequality imposed on $T$ ensures that the correction is larger than the cutoff error.
+
+\begin{proposition}\label{prop:logarithmic-cutoff}
+Let $\lambda>0$, let $\phi\in\mathbb R^{V(X)}$ satisfy $A\phi=\lambda\phi$, and suppose that adjacent vertices $o,w$ satisfy $\phi(o)=1$ and $\phi(w)\leq0$. If $T>0$ and
+\[
+T^2>\lambda\mathcal E(\phi),
+\]
+then there is a nonempty set $F\subseteq V(X)$ such that
+\[
+\rho(X[F])>\lambda
+\qquad\text{and}\qquad
+|F|\leq1+e^{2T}\|\phi\|_2^2.
+\]
+\end{proposition}
+
+\begin{proof}
+Let $p=\max\{\phi,0\}$ coordinatewise. By Lemma~\ref{lem:positive-part}, $Ap\geq\lambda p$, $\mathcal E(p)\leq\mathcal E(\phi)$, $p(o)=1$, and $p(w)=0$. Define
+\[
+\eta(x)=\chi_T(p(x))
+\qquad\text{and}\qquad
+u(x)=p(x)\eta(x)
+\]
+for every $x\in V(X)$. Lemma~\ref{lem:scalar-log-cutoff} gives $u(o)=1$ and $u(w)=0$. It also shows that $u(x)\neq0$ only if $p(x)>e^{-T}$. Hence
+\[
+|\operatorname{supp}u|e^{-2T}\leq\sum_{x\in\operatorname{supp}u}p(x)^2\leq\|p\|_2^2\leq\|\phi\|_2^2,
+\]
+where the final inequality holds because $|p(x)|\leq|\phi(x)|$ for every vertex $x$. Therefore $|\operatorname{supp}u|\leq e^{2T}\|\phi\|_2^2$.
+
+Apply Lemma~\ref{lem:finite-ground-state} with this $p$ and $\eta$. The coordinatewise inequality $(A-\lambda I)p\geq0$ and the nonnegativity of $p$ and $\eta$ imply that the first sum in that identity is nonnegative. For every edge $\{x,y\}$, Lemma~\ref{lem:scalar-log-cutoff} gives
+\[
+p(x)p(y)\bigl(\eta(x)-\eta(y)\bigr)^2\leq\frac{(p(x)-p(y))^2}{T^2}.
+\]
+Summing this estimate over the edges and using $\mathcal E(p)\leq\mathcal E(\phi)$ yields
+\[
+u^{\mathsf T}(A-\lambda I)u\geq-\frac{\mathcal E(p)}{T^2}\geq-\frac{\mathcal E(\phi)}{T^2}.
+\]
+
+Set $h=(Au)(w)=\sum_{x\sim w}u(x)$. The vector $u$ is nonnegative, and $o$ is a neighbor of $w$ with $u(o)=1$, so $h\geq1$. Let $e_w$ be the coordinate vector of $w$ and define
+\[
+v=u+\frac{h}{\lambda}e_w.
+\]
+Since $u(w)=0$ and $X$ has no loop at $w$, we have $e_w^{\mathsf T}(A-\lambda I)u=(Au)(w)=h$ and $e_w^{\mathsf T}(A-\lambda I)e_w=-\lambda$. Expanding the quadratic form therefore gives
+\[
+\begin{aligned}
+v^{\mathsf T}(A-\lambda I)v
+&=u^{\mathsf T}(A-\lambda I)u+2\frac{h}{\lambda}e_w^{\mathsf T}(A-\lambda I)u+\frac{h^2}{\lambda^2}e_w^{\mathsf T}(A-\lambda I)e_w\\
+&=u^{\mathsf T}(A-\lambda I)u+\frac{h^2}{\lambda}\\
+&\geq-\frac{\mathcal E(\phi)}{T^2}+\frac{1}{\lambda}>0,
+\end{aligned}
+\]
+where the final strict inequality is exactly $T^2>\lambda\mathcal E(\phi)$.
+
+Let $F=\operatorname{supp}v$, and let $v_F\in\mathbb R^F$ be the restriction of $v$ to $F$. The vector $v_F$ is nonzero because $v(o)=u(o)=1$. Since $v$ vanishes outside $F$,
+\[
+v_F^{\mathsf T}A_Fv_F=v^{\mathsf T}Av>\lambda\|v\|_2^2=\lambda\|v_F\|_2^2.
+\]
+The Rayleigh principle gives $\rho(X[F])>\lambda$. Moreover, $u(w)=0$ and $h/\lambda>0$, so $F=\operatorname{supp}u\cup\{w\}$. The support estimate above now gives $|F|\leq1+e^{2T}\|\phi\|_2^2$, as required.
+\end{proof}
+
+When $\lambda$ is the second eigenvalue and $X$ is vertex-transitive, Proposition~\ref{prop:logarithmic-cutoff} supplies exactly the set to which Lemma~\ref{lem:induced-subgraph-count} applies. The following consequence records the resulting estimate in the form used in Section~\ref{sec:projector-main-proof}.
+
+\begin{corollary}\label{cor:logarithmic-localization}
+Suppose that $X$ is vertex-transitive and that $\lambda=\lambda_2(X)>0$. Let $\phi$ be a real $\lambda$-eigenfunction, and suppose that adjacent vertices $o,w$ satisfy $\phi(o)=1$ and $\phi(w)\leq0$. If $T>0$ and $T^2>\lambda\mathcal E(\phi)$, then
+\[
+n\leq(d+1)\bigl(1+e^{2T}\|\phi\|_2^2\bigr)^2.
+\]
+In particular,
+\[
+\log n\leq\log(4(d+1))+4T+2\log\|\phi\|_2^2.
+\]
+\end{corollary}
+
+\begin{proof}
+Proposition~\ref{prop:logarithmic-cutoff} gives a nonempty set $F$ such that $\rho(X[F])>\lambda_2(X)$ and $|F|\leq1+e^{2T}\|\phi\|_2^2$. Lemma~\ref{lem:induced-subgraph-count} therefore gives
+\[
+n\leq(d+1)|F|^2\leq(d+1)\bigl(1+e^{2T}\|\phi\|_2^2\bigr)^2.
+\]
+Since $\phi(o)=1$, we have $\|\phi\|_2^2\geq1$. Consequently, $1+e^{2T}\|\phi\|_2^2\leq2e^{2T}\|\phi\|_2^2$. Taking logarithms in the preceding estimate proves
+\[
+\log n\leq\log(d+1)+2\log\bigl(2e^{2T}\|\phi\|_2^2\bigr)=\log(4(d+1))+4T+2\log\|\phi\|_2^2.
+\]
+\end{proof}
+
+Corollary~\ref{cor:logarithmic-localization} separates the localization argument from the choice of eigenfunction. Section~\ref{sec:projector-main-proof} uses the spectral projector onto the $\lambda_2(X)$-eigenspace to construct an eigenfunction with controlled norm and energy, and then combines the resulting estimate with a lower bound for the spectral gap in terms of $n/m(X)$.
+
+\section{Spectral-Projector Estimates and Proof of the Main Theorem}\label{sec:projector-main-proof}
+
+Throughout this section, let $X$ be a finite, connected, simple, $d$-regular vertex-transitive graph on $n$ vertices. We first construct the eigenfunction required by Corollary~\ref{cor:logarithmic-localization} and then use the same spectral projector to control the spectral gap. Write $A=A_X$, $\lambda=\lambda_2(X)$, $\gamma=d-\lambda$, $m=m(X)$, and $r=n/m$. Because $X$ is connected, the eigenvalue $d$ is simple, so $\lambda<d$ and $\gamma>0$. Let $P$ be the orthogonal projector from $\mathbb R^{V(X)}$ onto the $\lambda$-eigenspace of $A$. Godsil and McKay~\cite{GodsilMcKay1980WalkRegular} developed the classical theory of graphs in which the number of closed walks of each length based at a vertex is independent of the vertex. Every vertex-transitive graph has this property, which in particular forces each spectral projector to have constant diagonal. Ivrissimtzis and Peyerimhoff~\cite{IvrissimtzisPeyerimhoff2013SpectralRepresentations} studied the Euclidean representations obtained by evaluating an orthonormal basis of an eigenspace at the vertices of a vertex-transitive graph. Lyons and Oveis Gharan~\cite[Section~6]{LyonsOveisGharan2018SpectralEmbedding} use the spectral-projection viewpoint to connect eigenspaces with the growth of metric balls, while Burq and Letrouit~\cite[Equation~(3.2)]{BurqLetrouit2026Delocalized} record the constant-diagonal identity explicitly for transitive graphs. The next lemma derives all projector identities needed below.
+
+\begin{lemma}\label{lem:normalized-projector}
+For every vertex $x\in V(X)$, one has $P(x,x)=m/n$. If $C=rP$, then $C(x,x)=1$, $C^2=rC$, $AC=\lambda C$, and $\|Ce_x\|_2^2=r$ for every $x\in V(X)$, where $e_x$ is the coordinate vector of $x$.
+\end{lemma}
+
+\begin{proof}
+For $g\in\operatorname{Aut}(X)$, let $U_g$ be the permutation matrix defined by $U_ge_x=e_{gx}$. The identity $U_gA=AU_g$ shows that $U_g$ preserves the $\lambda$-eigenspace and its orthogonal complement. The uniqueness of the orthogonal projection onto this eigenspace therefore implies $U_gPU_g^{\mathsf T}=P$. In particular, $P(gx,gx)=P(x,x)$. Vertex transitivity makes all diagonal entries of $P$ equal. Since an orthogonal projector has trace equal to its rank and $\operatorname{rank}P=m$, their common value is $\operatorname{Tr}P/n=m/n$.
+
+The definition $C=rP$, together with $r=n/m$, now shows that $C(x,x)=1$. Since $P^2=P$ and $AP=\lambda P$, we also have $C^2=r^2P^2=r^2P=rC$ and $AC=rAP=\lambda C$. Finally, $C$ is symmetric, so $\|Ce_x\|_2^2=e_x^{\mathsf T}C^2e_x=rC(x,x)=r$. This proves all the stated identities.
+\end{proof}
+
+Each column of $C$ belongs to the $\lambda$-eigenspace. If one of these columns is nonpositive at a neighboring vertex, it already has the sign pattern needed in Section~\ref{sec:logarithmic-localization}. If every edge entry of $C$ is positive, a controlled linear combination of two adjacent columns creates a zero at one endpoint without substantially increasing the norm.
+
+\begin{lemma}\label{lem:interpolated-eigenfunction}
+Suppose that $\lambda>0$. There are adjacent vertices $o,w$ and a real $\lambda$-eigenfunction $\phi$ such that $\phi(o)=1$, $\phi(w)\leq0$, $\|\phi\|_2^2\leq dr/\gamma$, and $\mathcal E(\phi)\leq dr$.
+\end{lemma}
+
+\begin{proof}
+The hypothesis $\lambda>0$, together with $\gamma=d-\lambda$, implies $0<\gamma<d$.
+
+Suppose first that some edge $ow$ satisfies $C(o,w)\leq0$, and set $\phi=Ce_o$. Lemma~\ref{lem:normalized-projector} shows that $A\phi=\lambda\phi$, $\phi(o)=C(o,o)=1$, $\phi(w)=C(w,o)=C(o,w)\leq0$, and $\|\phi\|_2^2=r$. The inequality $\gamma<d$ implies $r\leq dr/\gamma$. Moreover, $\mathcal E(\phi)=\phi^{\mathsf T}(dI-A)\phi=(d-\lambda)\|\phi\|_2^2=\gamma r\leq dr$. Thus the required conclusions hold in this case.
+
+It remains to consider the case in which $C(x,y)>0$ for every edge $xy$. Fix a vertex $o$. The identity $AC=\lambda C$ and Lemma~\ref{lem:normalized-projector} imply $\sum_{w\sim o}C(o,w)=(AC)(o,o)=\lambda C(o,o)=\lambda$. Among the $d$ neighbors of $o$, choose $w$ for which $a:=C(o,w)$ is minimal. Then $0<a\leq\lambda/d<1$. Define $\phi=(Ce_o-aCe_w)/(1-a^2)$. Both columns in the numerator are $\lambda$-eigenfunctions, so $A\phi=\lambda\phi$. Symmetry of $C$ and the identity $C(x,x)=1$ show that $\phi(o)=(C(o,o)-aC(o,w))/(1-a^2)=1$ and $\phi(w)=(C(w,o)-aC(w,w))/(1-a^2)=0$.
+
+To estimate the norm, Lemma~\ref{lem:normalized-projector} implies $\langle Ce_o,Ce_w\rangle=e_o^{\mathsf T}C^2e_w=rC(o,w)=ra$. Consequently,
+\[
+\begin{aligned}
+\|\phi\|_2^2
+&=\frac{\|Ce_o\|_2^2-2a\langle Ce_o,Ce_w\rangle+a^2\|Ce_w\|_2^2}{(1-a^2)^2}\\
+&=\frac{r-2ra^2+ra^2}{(1-a^2)^2}
+=\frac{r}{1-a^2}.
+\end{aligned}
+\]
+The choice of $a$ further implies
+\[
+1-a^2\geq1-\frac{\lambda^2}{d^2}=\frac{(d-\lambda)(d+\lambda)}{d^2}=\frac{\gamma(d+\lambda)}{d^2}\geq\frac{\gamma}{d}.
+\]
+Therefore $\|\phi\|_2^2\leq dr/\gamma$. Since $A\phi=\lambda\phi$, the energy satisfies $\mathcal E(\phi)=\phi^{\mathsf T}(dI-A)\phi=\gamma\|\phi\|_2^2\leq dr$. The proof is complete.
+\end{proof}
+
+The eigenfunction in Lemma~\ref{lem:interpolated-eigenfunction} can now be inserted into the logarithmic localization estimate from Section~\ref{sec:logarithmic-localization}. This produces the first of the two inequalities for $r=n/m$ used in the proof of the main theorem.
+
+\begin{proposition}\label{prop:localization-gap}
+If $\lambda>0$, then
+\[
+\log n\leq\log(4(d+1))+2\log\frac{dr}{\gamma}+8d\sqrt r.
+\]
+\end{proposition}
+
+\begin{proof}
+Choose $o,w$, and $\phi$ as in Lemma~\ref{lem:interpolated-eigenfunction}, and set $T=2d\sqrt r$. Since $\lambda<d$ and $\mathcal E(\phi)\leq dr$, we have $\lambda\mathcal E(\phi)<d^2r<T^2=4d^2r$. Corollary~\ref{cor:logarithmic-localization} is therefore applicable. Its logarithmic estimate and the bound $\|\phi\|_2^2\leq dr/\gamma$ imply
+\[
+\log n\leq\log(4(d+1))+4T+2\log\|\phi\|_2^2
+\leq\log(4(d+1))+8d\sqrt r+2\log\frac{dr}{\gamma},
+\]
+as asserted.
+\end{proof}
+
+Proposition~\ref{prop:localization-gap} becomes weaker when $\gamma$ is small. A second consequence of the projector prevents $\gamma$ from being arbitrarily small when $m$ is large. For a vertex $o$ and an integer $s\geq0$, write $B_X(o,s)=\{x\in V(X):\operatorname{dist}_X(o,x)\leq s\}$. The following argument is a direct specialization of the spectral-embedding method of Lyons and Oveis Gharan~\cite[Theorem~6.1]{LyonsOveisGharan2018SpectralEmbedding} to the eigenspace considered here.
+
+\begin{lemma}\label{lem:projector-ball}
+For every vertex $o$ and every integer $s\geq0$ satisfying $\gamma s^2\leq1/2$, including the case in which $s$ is greater than or equal to the diameter of $X$, one has $|B_X(o,s)|\leq4r$.
+\end{lemma}
+
+\begin{proof}
+Put $\alpha=m/n=1/r$ and, for each vertex $x$, define $\Phi_x=Pe_x$. Lemma~\ref{lem:normalized-projector} and the identities $P^2=P=P^{\mathsf T}$ imply $\|\Phi_x\|_2^2=P(x,x)=\alpha$ and $\langle\Phi_x,\Phi_y\rangle=P(x,y)$. For a fixed vertex $x$, we consequently have
+\[
+\begin{aligned}
+\sum_{y\sim x}\|\Phi_x-\Phi_y\|_2^2
+&=\sum_{y\sim x}\bigl(\|\Phi_x\|_2^2+\|\Phi_y\|_2^2-2\langle\Phi_x,\Phi_y\rangle\bigr)\\
+&=2d\alpha-2\sum_{y\sim x}P(x,y)\\
+&=2d\alpha-2(AP)(x,x)
+=2(d-\lambda)\alpha
+=2\gamma\alpha.
+\end{aligned}
+\]
+Every summand on the left is nonnegative, so adjacent vertices $x,y$ satisfy $\|\Phi_x-\Phi_y\|_2\leq\sqrt{2\gamma\alpha}$.
+
+Let $x\in B_X(o,s)$, and choose a shortest path $o=x_0,x_1,\ldots,x_\ell=x$, where $\ell\leq s$. The triangle inequality along this path yields
+\[
+\|\Phi_x-\Phi_o\|_2\leq\sum_{i=1}^{\ell}\|\Phi_{x_i}-\Phi_{x_{i-1}}\|_2\leq s\sqrt{2\gamma\alpha}.
+\]
+Thus $\|\Phi_x-\Phi_o\|_2^2\leq2\gamma\alpha s^2\leq\alpha$. Since both vectors have squared norm $\alpha$, it follows that $P(o,x)=\langle\Phi_o,\Phi_x\rangle=\alpha-\frac12\|\Phi_x-\Phi_o\|_2^2\geq\alpha/2$.
+
+Finally, the identity $P^2=P$ shows that
+\[
+\alpha=P(o,o)=(P^2)(o,o)=\sum_{x\in V(X)}P(o,x)^2
+\geq\sum_{x\in B_X(o,s)}P(o,x)^2
+\geq|B_X(o,s)|\frac{\alpha^2}{4}.
+\]
+Since $\alpha>0$, division by $\alpha^2/4$ proves $|B_X(o,s)|\leq4/\alpha=4r$. No part of the argument requires $s$ to be smaller than the diameter; when $s$ reaches or exceeds the diameter, the ball is simply all of $V(X)$.
+\end{proof}
+
+Choosing the largest integer scale allowed by Lemma~\ref{lem:projector-ball} turns its volume estimate into a direct alternative between small multiplicity and a quantitative lower bound for the spectral gap.
+
+\begin{corollary}\label{cor:gap-multiplicity-alternative}
+Either $m\leq4$ or $\gamma>1/(32r^2)$.
+\end{corollary}
+
+\begin{proof}
+Set $R=\lfloor(2\gamma)^{-1/2}\rfloor$. Then $\gamma R^2\leq1/2$, so Lemma~\ref{lem:projector-ball} applies at radius $R$.
+
+If $R\geq\operatorname{diam}X$, then $B_X(o,R)=V(X)$ for every vertex $o$. The ball estimate becomes $n\leq4r$, and the identity $r=n/m$ implies $m\leq4$.
+
+Suppose instead that $R<\operatorname{diam}X$. Automorphisms preserve graph distance, and vertex transitivity therefore makes $\max_{x\in V(X)}\operatorname{dist}_X(o,x)$ independent of $o$. Its common value is $\operatorname{diam}X$. Hence a geodesic starting at $o$ contains vertices at distances $0,1,\ldots,R$, and these $R+1$ vertices all belong to $B_X(o,R)$. The defining property of the floor function and Lemma~\ref{lem:projector-ball} now imply $1/\sqrt{2\gamma}<R+1\leq|B_X(o,R)|\leq4r$. Squaring the strict inequality $1/\sqrt{2\gamma}<4r$ and rearranging it proves $\gamma>1/(32r^2)$.
+\end{proof}
+
+Proposition~\ref{prop:localization-gap} and Corollary~\ref{cor:gap-multiplicity-alternative} control the two parameters that remained after Section~\ref{sec:logarithmic-localization}. We now combine them and account separately for the cases in which the second eigenvalue or its multiplicity is small.
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Let the adjacency eigenvalues of $X$ be $d=\theta_1>\theta_2\geq\cdots\geq\theta_n$, so that $\theta_2=\lambda$. Suppose first that $\lambda\leq0$. Then $\theta_j\leq0$ for every $j\geq2$. Since $X$ is simple, the diagonal of $A$ is zero and hence $\operatorname{Tr}A=0$. Therefore $\sum_{j=2}^n(-\theta_j)=d$. The diagonal entry $(A^2)(x,x)$ equals the degree $d$ at every vertex $x$, so $\operatorname{Tr}A^2=nd$. As the numbers $-\theta_j$ are nonnegative,
+\[
+nd=\sum_{j=1}^n\theta_j^2
+=d^2+\sum_{j=2}^n(-\theta_j)^2\leq d^2+\left(\sum_{j=2}^n(-\theta_j)\right)^2
+=2d^2.
+\]
+Thus $n\leq2d$. The definition of $C_d$ in Theorem~\ref{thm:main} includes $C_d\geq(1+\log(2d))^2$, and consequently $C_dn/(1+\log n)^2\geq n\geq m$. This proves the theorem when $\lambda\leq0$.
+
+Assume from now on that $\lambda>0$. If $m\leq4$, consider the function $f(x)=(1+\log x)^2/x$ for $x\geq1$. Its derivative is $f'(x)=(1+\log x)(1-\log x)/x^2$, so its maximum occurs at $x=e$ and equals $4/e<2$. It follows that $m(1+\log n)^2/n\leq4(1+\log n)^2/n\leq16/e<8\leq C_d$. After rearrangement, this is the asserted estimate.
+
+It remains to treat $\lambda>0$ and $m>4$. Corollary~\ref{cor:gap-multiplicity-alternative} implies $\gamma>1/(32r^2)$, and therefore $dr/\gamma<32dr^3$. Substitution into Proposition~\ref{prop:localization-gap} yields
+\[
+\log n<8d\sqrt r+6\log r+2\log(32d)+\log(4(d+1)).
+\]
+Since $r\geq1$, we have $\log r\leq\sqrt r$ and $\sqrt r\geq1$. Recalling $K_d=8d+6+2\log(32d)+\log(4(d+1))$, we obtain $\log n\leq K_d\sqrt r$. Hence $r\geq(\log n)^2/K_d^2$, and the identity $m=n/r$ implies $m\leq K_d^2n/(\log n)^2$.
+
+A simple $d$-regular graph has at least $d+1$ vertices. Thus $d\geq2$ implies $n\geq3$, and consequently $1+\log n\leq2\log n$. We conclude that
+\[
+m\leq4K_d^2\frac{n}{(1+\log n)^2}\leq C_d\frac{n}{(1+\log n)^2}.
+\]
+The three cases cover every possible value of $\lambda$ and $m$, completing the proof.
+\end{proof}
+
+The Cayley-graph consequence stated in the Introduction now follows by applying the theorem to the regular action of the underlying group.
+
+\begin{proof}[Proof of Corollary~\ref{cor:cayley}]
+The assumptions $S=S^{-1}$ and $1\notin S$ make $\operatorname{Cay}(\Gamma,S)$ a simple undirected graph, and $|S|=d$ makes it $d$-regular. Since $S$ generates $\Gamma$, the graph is connected. For each $h\in\Gamma$, left multiplication $g\mapsto hg$ is an automorphism, and these automorphisms act transitively on the vertex set $\Gamma$. Theorem~\ref{thm:main}, with $n=|\Gamma|$, now proves the stated inequality.
+\end{proof}
+
+\section{Concluding Remarks}\label{sec:concluding-remarks}
+
+Theorem~\ref{thm:main} establishes the bound $m(X)=O_d(n/(\log n)^2)$ for fixed-degree vertex-transitive graphs, and the same estimate holds throughout the Cayley-graph subclass. The optimal order remains open. Haiman, Schildkraut, Zhang, and Zhao~\cite[Theorem~1.5]{HaimanSchildkrautZhangZhao2022HighMultiplicity} constructed infinitely many connected $18$-regular Cayley graphs satisfying $m(X)\geq n^{2/5}-1$. Thus a substantial gap remains even for Cayley graphs, and consequently also for vertex-transitive graphs.
+
+Every finite connected $2$-regular graph is a cycle, whose second adjacency eigenvalue has multiplicity at most $2$. The unresolved extremal questions therefore begin at degree $3$, and we record the vertex-transitive and Cayley-graph versions together.
+
+\begin{problem}\label{prob:optimal-transitive-multiplicity}
+Fix an integer $d\geq3$. Along sequences of connected simple $d$-regular vertex-transitive graphs $X$ with $n=|V(X)|$ tending to infinity, determine the largest possible growth rate of $m(X)$ in terms of $n$. Determine the corresponding growth rate when $X$ is required to be a Cayley graph. Are these two extremal rates the same? In particular, does there exist $\varepsilon_d>0$ such that every connected $d$-regular vertex-transitive graph on $n$ vertices satisfies $m(X)=O_d(n^{1-\varepsilon_d})$?
+\end{problem}
+
+The proof identifies the source of the exponent $2$ in Theorem~\ref{thm:main}. In the range $\lambda_2(X)>0$, set $r=n/m(X)$ and $\gamma=d-\lambda_2(X)$. Lemma~\ref{lem:interpolated-eigenfunction} produces an eigenfunction with Dirichlet energy at most $dr$, so the condition $T^2>\lambda_2(X)\mathcal E(\phi)$ used in the logarithmic cutoff is ensured by taking $T$ of order $d\sqrt r$. The support of the resulting function has size $\exp(O_d(\sqrt r))$ up to a factor polynomial in $r$, while Corollary~\ref{cor:gap-multiplicity-alternative} ensures that the dependence on $\gamma$ contributes only a logarithmic term. These estimates lead to $\log n=O_d(\sqrt r)$. Thus the leading $\sqrt r$ term, rather than the precise power in the lower bound for $\gamma$, is responsible for the squared logarithm. Within the present approach, an improvement in the exponent would require a smaller energy or cutoff scale, or a different way to pass from a localized eigenfunction to a global bound for $n$.
+
+Additional algebraic structure can change the extremal behavior. D'Orsi, Jones, Ruotolo, Vadhan, and Zhang~\cite{DOrsiJonesRuotoloVadhanZhang2025AbelianCayley} proved that the second-eigenvalue multiplicity of an Abelian Cayley graph is at most $2^{O(d)}$, independently of the order of the graph, and exhibited examples with multiplicity $2^{\Omega(d)}$. It remains natural to determine which properties of a transitive group action force a bound independent of $n$, or more generally a bound substantially smaller than the one for arbitrary vertex-transitive graphs.
+
+A related direction concerns eigenvalues beyond the second one. Jiang, Tidor, Yao, Zhang, and Zhao~\cite[Theorem~2.2]{JiangTidorYaoZhangZhao2021FixedAngle} proved an $O_{d,j}(n/\log\log n)$ bound for the multiplicity of the $j$th largest adjacency eigenvalue of a connected bounded-degree graph when $j$ is fixed. It is natural to ask whether vertex transitivity permits a squared-logarithmic improvement for every fixed $j$. The induced-subgraph argument used here is particularly suited to the second eigenvalue, since two separated translates of one induced subgraph produce two eigenvalues above $\lambda_2(X)$. Treating a higher eigenvalue by the same route would require simultaneous control of several suitably separated translates or a different variational argument.
+
+\section*{Declaration}
+\noindent$\textbf{Conflict~of~interest}$
+The authors declare that they have no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.
+
+\medskip
+	
+\noindent$\textbf{Data~availability}$
+Data sharing not applicable to this paper as no datasets were generated or analysed during the current study.
+
+\medskip
+
+\noindent\textbf{Use of generative AI tools.}
+The authors used GPT-6 Astra to assist in exploring proof strategies, checking proofs, and improving the exposition. All mathematical results, arguments, and proofs were independently reviewed and verified by the authors, who take full responsibility for the accuracy and content of this work.
+
+
+\begin{thebibliography}{99}
+
+\bibitem{Babai1979CayleySpectra}
+L{\'a}szl{\'o} Babai.
+\newblock Spectra of {Cayley} graphs.
+\newblock \emph{Journal of Combinatorial Theory, Series B}, 27(2):180--189, 1979.
+
+\bibitem{BallaBucic2024ImprovedMultiplicity}
+Igor Balla and Matija Buci{\'c}.
+\newblock Equiangular lines via improved eigenvalue multiplicity.
+\newblock \emph{arXiv preprint arXiv:2409.16219}, 2024.
+
+\bibitem{BallaDraxlerKeevashSudakov2018Equiangular}
+Igor Balla, Felix Dr{\"a}xler, Peter Keevash, and Benny Sudakov.
+\newblock Equiangular lines and spherical codes in {Euclidean} space.
+\newblock \emph{Inventiones Mathematicae}, 211(1):179--212, 2018.
+
+\bibitem{BrouwerHaemers2012Spectra}
+Andries E. Brouwer and Willem H. Haemers.
+\newblock \emph{Spectra of Graphs}.
+\newblock Universitext. Springer, New York, 2012.
+
+\bibitem{Bukh2016Equiangular}
+Boris Bukh.
+\newblock Bounds on equiangular lines and on related spherical codes.
+\newblock \emph{SIAM Journal on Discrete Mathematics}, 30(1):549--554, 2016.
+
+\bibitem{BurqLetrouit2026Delocalized}
+Nicolas Burq and Cyril Letrouit.
+\newblock Delocalized eigenvectors of transitive graphs and beyond.
+\newblock \emph{Journal of Spectral Theory}, 16(1):145--181, 2026.
+
+\bibitem{DOrsiJonesRuotoloVadhanZhang2025AbelianCayley}
+Tommaso d'Orsi, Chris Jones, Jake Ruotolo, Salil Vadhan, and Jiyu Zhang.
+\newblock Sparsest cut and eigenvalue multiplicities on low degree {Abelian Cayley} graphs.
+\newblock In \emph{28th International Conference on Approximation Algorithms for Combinatorial Optimization Problems (APPROX 2025)}, volume 353 of \emph{Leibniz International Proceedings in Informatics (LIPIcs)}, pages 16:1--16:20, Dagstuhl, Germany, 2025. Schloss Dagstuhl -- Leibniz-Zentrum f{\"u}r Informatik.
+
+\bibitem{FriedmanMurtyTillich2006Abelian}
+Joel Friedman, M. Ram Murty, and Jean-Pierre Tillich.
+\newblock Spectral estimates for {Abelian Cayley} graphs.
+\newblock \emph{Journal of Combinatorial Theory, Series B}, 96(1):111--121, 2006.
+
+\bibitem{GodsilMcKay1980WalkRegular}
+C. D. Godsil and B. D. McKay.
+\newblock Feasibility conditions for the existence of walk-regular graphs.
+\newblock \emph{Linear Algebra and its Applications}, 30:51--61, 1980.
+
+\bibitem{GuoMohar2024SimpleEigenvalues}
+Krystal Guo and Bojan Mohar.
+\newblock Simple eigenvalues of cubic vertex-transitive graphs.
+\newblock \emph{Canadian Journal of Mathematics}, 76(5):1496--1519, 2024.
+
+\bibitem{HaeselerKeller2011Generalized}
+Sebastian Haeseler and Matthias Keller.
+\newblock Generalized solutions and spectrum for dirichlet forms on graphs.
+\newblock In Daniel Lenz, Florian Sobieczky, and Wolfgang Woess, editors, \emph{Random Walks, Boundaries and Spectra}, volume 64 of \emph{Progress in Probability}, pages 181--199. Birkh{\"a}user, Basel, 2011.
+
+\bibitem{HaimanSchildkrautZhangZhao2022HighMultiplicity}
+Milan Haiman, Carl Schildkraut, Shengtong Zhang, and Yufei Zhao.
+\newblock Graphs with high second eigenvalue multiplicity.
+\newblock \emph{Bulletin of the London Mathematical Society}, 54(5):1630--1652, 2022.
+
+\bibitem{IvrissimtzisPeyerimhoff2013SpectralRepresentations}
+Ioannis Ivrissimtzis and Norbert Peyerimhoff.
+\newblock Spectral representations of vertex transitive graphs, {Archimedean} solids and finite {Coxeter} groups.
+\newblock \emph{Groups, Geometry, and Dynamics}, 7(3):591--615, 2013.
+
+\bibitem{JiangPolyanskii2020Forbidden}
+Zilin Jiang and Alexandr Polyanskii.
+\newblock Forbidden subgraphs for graphs of bounded spectral radius, with applications to equiangular lines.
+\newblock \emph{Israel Journal of Mathematics}, 236(1):393--421, 2020.
+
+\bibitem{JiangTidorYaoZhangZhao2021FixedAngle}
+Zilin Jiang, Jonathan Tidor, Yuan Yao, Shengtong Zhang, and Yufei Zhao.
+\newblock Equiangular lines with a fixed angle.
+\newblock \emph{Annals of Mathematics}, 194(3):729--743, 2021.
+
+\bibitem{KellerPinchoverPogorzelski2020Criticality}
+Matthias Keller, Yehuda Pinchover, and Felix Pogorzelski.
+\newblock Criticality theory for {Schr{\"o}dinger} operators on graphs.
+\newblock \emph{Journal of Spectral Theory}, 10(1):73--114, 2020.
+
+\bibitem{LeeMakarychev2009MultiplicityGrowth}
+James R. Lee and Yury Makarychev.
+\newblock Eigenvalue multiplicity and volume growth.
+\newblock \emph{arXiv preprint arXiv:0806.1745}, 2009.
+
+\bibitem{LemmensSeidel1973Equiangular}
+P. W. H. Lemmens and J. J. Seidel.
+\newblock Equiangular lines.
+\newblock \emph{Journal of Algebra}, 24(3):494--512, 1973.
+
+\bibitem{Lovasz1975TransitiveSpectra}
+L{\'a}szl{\'o} Lov{\'a}sz.
+\newblock Spectra of graphs with transitive groups.
+\newblock \emph{Periodica Mathematica Hungarica}, 6(2):191--195, 1975.
+
+\bibitem{LyonsOveisGharan2018SpectralEmbedding}
+Russell Lyons and Shayan Oveis Gharan.
+\newblock Sharp bounds on random walk eigenvalues via spectral embedding.
+\newblock \emph{International Mathematics Research Notices}, 2018(24):7555--7605, 2018.
+
+\bibitem{McKenzieRasmussenSrivastava2021ClosedWalks}
+Theo McKenzie, Peter M. R. Rasmussen, and Nikhil Srivastava.
+\newblock Support of closed walks and second eigenvalue multiplicity of graphs.
+\newblock In \emph{Proceedings of the 53rd Annual ACM SIGACT Symposium on Theory of Computing}, pages 396--407. New York, 2021. Association for Computing Machinery.
+
+\bibitem{Neumaier1989GraphRepresentations}
+Arnold Neumaier.
+\newblock Graph representations, two-distance sets, and equiangular lines.
+\newblock \emph{Linear Algebra and its Applications}, 114--115:141--156, 1989.
+
+\bibitem{SahSawhneyZhao2022Eigenbasis}
+Ashwin Sah, Mehtaab Sawhney, and Yufei Zhao.
+\newblock {Cayley} graphs without a bounded eigenbasis.
+\newblock \emph{International Mathematics Research Notices}, 2022(8):6157--6185, 2022.
+
+\bibitem{SauerwaldSunVagnozzi2023Support}
+Thomas Sauerwald, He Sun, and Danny Vagnozzi.
+\newblock The support of open versus closed random walks.
+\newblock In \emph{50th International Colloquium on Automata, Languages, and Programming (ICALP 2023)}, volume 261 of \emph{Leibniz International Proceedings in Informatics (LIPIcs)}, pages 103:1--103:21, Dagstuhl, Germany, 2023. Schloss Dagstuhl -- Leibniz-Zentrum f{\"u}r Informatik.
+
+\bibitem{Schildkraut2023FixedSecondEigenvalue}
+Carl Schildkraut.
+\newblock Equiangular lines and large multiplicity of fixed second eigenvalue.
+\newblock \emph{arXiv preprint arXiv:2302.12230}, 2023.
+
+\end{thebibliography}
+\end{document}

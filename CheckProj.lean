@@ -1,0 +1,24 @@
+import Theorem11Spectral
+
+set_option autoImplicit false
+
+open scoped InnerProductSpace
+
+#check Submodule.starProjection
+#check Submodule.starProjection_apply_mem
+#check Submodule.starProjection_mem
+#check Submodule.starProjection_apply_of_mem
+#check Submodule.starProjection_apply_eq_self
+#check Submodule.starProjection_idem
+#check Submodule.orthogonalProjectionOnto_apply_mem
+#check Submodule.inner_orthogonalProjectionOnto_eq_of_mem_left
+#check Submodule.inner_orthogonalProjectionOnto_eq_of_mem_right
+#check Submodule.starProjection_inner_self
+#check Submodule.starProjection_apply_eq_projectionOnto
+#check Submodule.coe_starProjection
+#check Module.End.IsSymmetric.eigenspace
+#check Module.End.mem_eigenspace
+#check LinearMap.mem_eigenspace
+#check Matrix.IsSymmetric.apply_eigenvectorBasis
+#check EuclideanSpace.basisFun_apply
+#check EuclideanSpace.basisFun_apply_apply

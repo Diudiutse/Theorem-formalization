@@ -1,0 +1,6 @@
+.lake/
+.elan/
+*.olean
+*.ilean
+*.dll
+*.exe

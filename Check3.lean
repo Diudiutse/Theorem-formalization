@@ -1,0 +1,9 @@
+import Theorem11Spectral
+#check SimpleGraph.Preconnected.subsingleton_connectedComponent
+#check Fintype.card_eq_one_iff
+#check Fintype.card_unique
+#check Fintype.card_eq_one_iff
+#check Module.finrank_eq_card_basis
+#check Submodule.finrank_le
+#check Module.finrank_le
+#check LinearMap.ker_le_ker_comp
